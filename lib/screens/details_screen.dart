@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:peliculas/themes/app_theme.dart';
+import 'package:peliculas/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key}) : super(key: key);
@@ -12,7 +13,14 @@ class DetailsScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           _CustomAppBar(),
-          SliverList(delegate: SliverChildListDelegate([_PosterAndTitle()]))
+          SliverList(
+              delegate: SliverChildListDelegate([
+            _PosterAndTitle(),
+            _Overview(),
+            _Overview(),
+            _Overview(),
+            const CastingCast()
+          ]))
         ],
       ),
     );
@@ -31,10 +39,11 @@ class _CustomAppBar extends StatelessWidget {
         centerTitle: true,
         titlePadding: const EdgeInsets.all(0),
         title: Container(
+          padding: const EdgeInsets.only(bottom: 12),
           width: double.infinity,
           alignment: Alignment.bottomCenter,
           color: Colors.black26,
-          child: const Text('movie'),
+          child: const Text('movie.title'),
         ),
         background: const FadeInImage(
           placeholder: AssetImage('assets/img/no-image.jpg'),
@@ -100,6 +109,20 @@ class _PosterAndTitle extends StatelessWidget {
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class _Overview extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      child: Text(
+        'Lorem ullamco Lorem magna eiusmod. Mollit ipsum nulla culpa fugiat sunt incididunt pariatur labore Lorem reprehenderit. Nisi quis consequat magna labore officia id nisi amet consequat esse esse. Ea minim culpa ea est.',
+        textAlign: TextAlign.justify,
+        style: Theme.of(context).textTheme.titleMedium,
       ),
     );
   }
